@@ -17,15 +17,15 @@ class FilesystemTemplateStore implements ITemplateStore {
 			}
 		}
 		
-		$templateFilepath = $templateDirectory . DIRECTORY_SEPARATOR . $template->getVersion() . '.tmpl';
+		$version = 1;
+		$templateFilepath = $templateDirectory . DIRECTORY_SEPARATOR . $version . '.tmpl';
 		while(file_exists($templateFilepath)) {
-			$template->setVersion($template->getVersion() + 1);
-			$templateFilepath = $templateDirectory . DIRECTORY_SEPARATOR . $template->getVersion() . '.tmpl';
+			$version++;
+			$templateFilepath = $templateDirectory . DIRECTORY_SEPARATOR . $version . '.tmpl';
 		}
 		
 		file_put_contents($templateFilepath, json_encode(array(
 			'name' => $template->getName(),
-			'version' => $template->getVersion(),
 			'title' => $template->getTitle(),
 			'content' => $template->getContent(),
 			'isMutable' => $template->isMutable()
@@ -59,7 +59,7 @@ class FilesystemTemplateStore implements ITemplateStore {
 		$templateDataJson = file_get_contents($templateFilepath);
 		$templateData = json_decode($templateDataJson, JSON_OBJECT_AS_ARRAY);
 		
-		return new Template($templateData['name'], $templateData['version'], $templateData['isMutable'], $templateData['title'], $templateData['content']);
+		return new Template($templateData['name'], $templateData['isMutable'], $templateData['title'], $templateData['content']);
 	}
 
 	public function removeTemplate($name) {

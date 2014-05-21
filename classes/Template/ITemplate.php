@@ -11,8 +11,5 @@ interface ITemplate {
 	public function getContent();
 	public function setContent($content);
 	
-	public function getVersion();
-	public function setVersion($version);
-	
 	public function isMutable();
 }

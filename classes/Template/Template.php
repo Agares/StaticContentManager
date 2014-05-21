@@ -4,9 +4,9 @@ namespace Template;
 class Template implements \Template\ITemplate {
 	private $content, $name, $title, $version, $isMutable;
 	
-	public function __construct($name, $version, $isMutable, $title, $content) {
+	public function __construct($name, $isMutable, $title, $content) {
 		$this->name = $name;
-		$this->version = $version;
+		$this->version = 1;
 		$this->isMutable = $isMutable;
 		$this->title = $title;
 		$this->content = $content;
