@@ -1,7 +1,16 @@
 <?php
+namespace Template;
 
 class Template implements \Template\ITemplate {
-	private $content, $name, $title, $version;
+	private $content, $name, $title, $version, $isMutable;
+	
+	public function __construct($name, $version, $isMutable, $title, $content) {
+		$this->name = $name;
+		$this->version = $version;
+		$this->isMutable = $isMutable;
+		$this->title = $title;
+		$this->content = $content;
+	}
 	
 	public function getContent() {
 		return $this->content;
@@ -33,6 +42,10 @@ class Template implements \Template\ITemplate {
 
 	public function setVersion($version) {
 		$this->version = $version;
+	}
+	
+	public function isMutable() {
+		return $this->isMutable;
 	}
 
 }

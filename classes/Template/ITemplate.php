@@ -13,4 +13,6 @@ interface ITemplate {
 	
 	public function getVersion();
 	public function setVersion($version);
+	
+	public function isMutable();
 }
