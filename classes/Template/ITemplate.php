@@ -11,9 +11,8 @@ interface ITemplate {
 	public function getContent();
 	public function setContent($content);
 	
-	public function getRendererName();
-	public function setRendererName($rendererName);
-	
 	public function getVersion();
 	public function setVersion($version);
+	
+	public function render($parameters = array());
 }
