@@ -13,8 +13,8 @@ class TemplateManager {
 	}
 	
 	public function addTemplate(ITemplate $template) {
-		if($this->templateStore->templateExists($template->getName()) && !$this->templateStore->getTemplate($template->name)->isMutable()) {
-			throw new Exception('Template ' . $template->getName() . ' is immutable and cannot be modified.');
+		if($this->templateStore->templateExists($template->getName()) && !$this->templateStore->getTemplate($template->getName())->isMutable()) {
+			throw new \Exception('Template ' . $template->getName() . ' is immutable and cannot be modified.');
 		}
 		
 		$this->templateStore->addTemplateVersion($template);

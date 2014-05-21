@@ -63,7 +63,19 @@ class FilesystemTemplateStore implements ITemplateStore {
 	}
 
 	public function removeTemplate($name) {
+		$templatePath = $this->getTemplatePath($name);
 		
+		if(!is_dir($templatePath)) {
+			throw new \Exception('Template ' . $name . ' not found.');
+		}
+		
+		$files = glob($templatePath . DIRECTORY_SEPARATOR . '*');
+		
+		foreach($files as $fileToRemove) {
+			unlink($fileToRemove);
+		}
+		
+		rmdir($templatePath);
 	}
 	
 	private function getTemplatePath($name) {
