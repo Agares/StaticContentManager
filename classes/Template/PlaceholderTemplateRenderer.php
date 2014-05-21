@@ -2,13 +2,14 @@
 
 namespace Template;
 class PlaceholderTemplateRenderer implements ITemplateRenderer {
-	public function render($content, $parameters = array()) {
-		$content = $this->replacePlaceholders($content, $parameters);
+	public function render(ITemplate $template, $parameters = array()) {
+		$content = $this->replacePlaceholders($template->getContent(), $parameters);
 		
 		return $content;
 	}
 	
 	private function replacePlaceholders($content, $parameters) {
+		$matches = array();
 		preg_match_all('#{{{[a-z0-9_-]*}}}#im',  $content, $matches);
 		foreach($matches[0] as $matchedTag) {
 			$matchedTagName = substr($matchedTag, 3, -3);

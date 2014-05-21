@@ -3,5 +3,5 @@
 namespace Template;
 
 interface ITemplateRenderer {
-	public function render($content, $parameters = array());
+	public function render(ITemplate $template, $parameters = array());
 }
